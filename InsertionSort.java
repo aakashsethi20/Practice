@@ -5,8 +5,7 @@ package Practice;
  * The example below does for int but this algorithm can be used for any 
  * comparable objects.
  * 
- * Created by
- * Aakash Sethi
+ * @author Aakash Sethi
  * On 2015-10-13
  */
 public class InsertionSort {

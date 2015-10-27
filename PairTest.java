@@ -2,9 +2,9 @@ package Practice;
 
 /*
  * This is a class to test and practice generic casting.
- * Created by
- * Aakash Sethi
- * On 2015-10-13
+ * 
+ * @author Aakash Sethi
+ * 2015-10-13
  */
 public class PairTest {
 	

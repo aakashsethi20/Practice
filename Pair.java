@@ -3,8 +3,8 @@ package Practice;
 /*
  * This is a generic class of Pair type. It is supposed to store
  * pair of objects.
- * Created by
- * Aakash Sethi 
+ * 
+ * @author Aakash Sethi 
  * On 2015-10-13
  */
 public class Pair<K, V> {

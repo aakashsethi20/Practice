@@ -4,9 +4,9 @@ package Practice;
 /**
  * This is a class to do insertion sort for arrays. I did this to practice making and
  * implementing the correct algorithm on my own. Making the method fool proof.
- * Created by
- * Aakash Sethi
- * on 2015-10-26
+ * 
+ * @author Aakash Sethi
+ * 2015-10-26
  */
 public class InsertSortArrays<T> implements Comparable<T> {
 	
