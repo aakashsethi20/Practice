@@ -4,3 +4,5 @@ This is a practice repository. Here I will be adding things which I practice and
 This repository may contain the following as well: <br />
 -CSI 2110 Fall 2015 Labs. <br />
 -SEG 2105 Fall 2015 Labs. <br />
+
+Please check the index.html file in each CSI Lab for the objective and instructions.
