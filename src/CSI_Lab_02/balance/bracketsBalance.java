@@ -2,67 +2,61 @@
  *  
  *  Class to check balanced brackets in math expressions  
  *
- *  Usage: java bracketsBalance <expression>
+ *  Usage: java bracketsBalance <exp>
  *  
- *  by Jeff Souza and Livaniaina Rakotomalala
+ *  by Jeff Souza
  *
  */
 
 class bracketsBalance {
 
-    // checks balanced brackets in exp (the expression)
-    private boolean bBalance (String exp){
+	private boolean bBalance (String exp){ 
 
-        //Create a new stack
-        ArrayStack stk = new ArrayStack(10);
-        // the bracket pairs
-        String brackets = "(){}[]";
+		// INCLUDE YOUR CODE HERE
 
-        //Scan across expression
-        for (int i = 0; i < exp.length(); i++){
-            char ch = exp.charAt(i);
-            int inputPos = brackets.indexOf(ch);
+		if(exp.isEmpty())
+			return true;
+		System.out.println("Expression is: " + exp);
 
-            //Push an opening bracket onto the stack
-            if (inputPos % 2 == 0){
-               try{
-                 stk.push (new Character(ch));
-               }
-               catch(StackFullException e){
-               }
-            }
-            //Process a closing bracket
-            else if (inputPos != -1){
-                //If stack empty, then error
-                if (stk.isEmpty())
-                    return false;
+		ArrayStack stack = new ArrayStack(50);
 
-                // Retrieve bracket from stack
-                char charFromStack='\0';
-                try{
-                  charFromStack = ((Character)stk.pop()).charValue();
-                }
-                catch(StackEmptyException e){
-               }
+		//will work as to legend of the brackets
+		String legend = "{}[]()";
 
-                int stackedPos = brackets.indexOf(charFromStack);
-                //If the opening and closing brackets are of different types, then error
-                if (stackedPos+1 != inputPos)
-                    return false;
-            }
-        }
+		char bracket =' ';
 
-        //If the stack is empty then no error, else error
-        return stk.isEmpty();
+		for (int i = 0; i < exp.length(); i++) {
 
-    }
+			bracket = exp.charAt(i);
+			System.out.println("Loop " + (i+1) + " bracket: " + bracket);
+			int bracketIndex = legend.indexOf(bracket);
+			
+			if(bracketIndex % 2 == 0) {
+				stack.push(bracket);
+				System.out.println("Open Bracket index: " + bracketIndex);
+			}
+			
+			else if(bracketIndex != -1) {
+				if(stack.isEmpty())
+					return false;
+				
+				char openBracket = ((Character) stack.pop()).charValue();
+				System.out.println("close bracket index : " + legend.indexOf(bracket));
+				if(bracketIndex-1 != legend.indexOf(openBracket))
+					return false;
+			}
+		}
 
-    public static void main(String[] args) {
+		return true;
 
-        bracketsBalance b = new bracketsBalance();
-        boolean result = b.bBalance(args[0]);
-   
-        if (result) System.out.println("The expression is balanced."); 
-        else        System.out.println("The expression is NOT balanced."); 
-    }
+	}
+
+	public static void main(String[] args) {
+
+		bracketsBalance b = new bracketsBalance();
+		boolean result = b.bBalance(args[0]);
+
+		if (result) System.out.println("The expression is balanced."); 
+		else        System.out.println("The expression is NOT balanced."); 
+	}
 }
