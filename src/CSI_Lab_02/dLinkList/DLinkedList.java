@@ -16,7 +16,10 @@ class DLinkedList {
 		InsertNode(nNode,lastNode);
 	}
 
+	
 	//********* Implemented this method **************//
+	
+	
 	// Inserts a node into the list after pAfter
 	void InsertNode(ListNode nNode, ListNode pAfter) {
 
@@ -31,6 +34,10 @@ class DLinkedList {
 		pAfter.next = nNode;
 	}
 
+	
+	//********* Implemented this method **************//
+	
+	
 	// Removes the specified node from the list
 	void RemoveNode(ListNode nNode) {
 
