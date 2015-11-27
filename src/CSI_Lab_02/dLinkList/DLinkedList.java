@@ -34,11 +34,14 @@ class DLinkedList {
 	// Removes the specified node from the list
 	void RemoveNode(ListNode nNode) {
 
-		if(firstNode == null)
-			return;
-		nNode.previous.next = nNode.next;
-		nNode.next.previous = nNode.previous;
-
+		if(nNode.previous == null)
+			firstNode = nNode.next;
+		else
+			nNode.previous.next = nNode.next;
+		if(nNode.next == null)
+			lastNode = nNode.previous;
+		else
+			nNode.next.previous = nNode.next;
 	}
 
 	// print the content of the list
