@@ -41,7 +41,7 @@ class DLinkedList {
 		if(nNode.next == null)
 			lastNode = nNode.previous;
 		else
-			nNode.next.previous = nNode.next;
+			nNode.next.previous = nNode.previous;
 	}
 
 	// print the content of the list
