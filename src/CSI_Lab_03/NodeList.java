@@ -18,7 +18,9 @@
 //
 // ==========================================================================
 import java.util.NoSuchElementException;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class NodeList<E> {
 	// The linked list which is to be adapted
@@ -65,9 +67,20 @@ public class NodeList<E> {
 		return linkedList.getLast();
 	}
 
-	// fix me!
+	// fixed me!
 	E prev(E element)
 			throws NoSuchElementException {
+		if(linkedList.peekFirst().equals(element))
+			return null;
+		
+		// Working with ListIterator
+		ListIterator<E> bobby = linkedList.listIterator();
+		
+		while(bobby.hasNext()) {
+			if(bobby.next().equals(element))
+				bobby.previous();
+				return bobby.previous();
+		}
 		throw new NoSuchElementException();
 		// return null;
 	}
@@ -76,10 +89,8 @@ public class NodeList<E> {
 	// fix me!
 	E next(E element)
 			throws NoSuchElementException {
-		int index = linkedList.indexOf(element) + 1;
-		if(linkedList.get(index) == null)
-			throw new NoSuchElementException();
-		return linkedList.get(index);
+		throw new NoSuchElementException();
+		// return null;
 	}
 
 	// fix me!
