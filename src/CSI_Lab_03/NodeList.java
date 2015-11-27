@@ -110,6 +110,7 @@ public class NodeList<E> {
 		if(e1Index != -1 && e2Index != -1) {
 			linkedList.set(e2Index, element1);
 			linkedList.set(e1Index, element2);
+			return;
 		}
 		throw new NoSuchElementException();
 	}
@@ -121,6 +122,7 @@ public class NodeList<E> {
 		if(currElement != null) {
 			int index = linkedList.indexOf(currElement);
 			linkedList.set(index, repElement);
+			return;
 		}
 		throw new NoSuchElementException();
 	}
@@ -147,21 +149,34 @@ public class NodeList<E> {
 				if(bobby.next().equals(currElement)) {
 					bobby.previous();
 					bobby.add(addElement);
+					return;
 				}
 			}
 		}
 		throw new NoSuchElementException();
 	}
 
-	// fix me!
+	// fixed me!
 	public void addAfter(E currElement,E addElement) 
 			throws NoSuchElementException {
+		if(linkedList.indexOf(currElement) != -1) {
+			ListIterator<E> bobby = linkedList.listIterator();
+			while(bobby.hasNext()) {
+				if(bobby.next().equals(currElement)) {
+					bobby.add(addElement);
+					return;
+				}
+			}
+		}
 		throw new NoSuchElementException();
 	}
 
-	// fix me!
+	// fixed me!
 	public E remove(E element) 
 			throws NoSuchElementException {
+		if(linkedList.indexOf(element) != -1) {
+			return linkedList.remove(linkedList.indexOf(element));
+		}
 		throw new NoSuchElementException();
 	}
 }
