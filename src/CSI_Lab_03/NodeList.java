@@ -40,7 +40,7 @@ public class NodeList<E> {
 	public boolean isFirst(E element) {
 		if(element == null)
 			return false;
-		else if(linkedList.peekFirst() == element)
+		else if(linkedList.peekFirst().equals(element))
 			return true;
 		return false;
 	}
@@ -49,7 +49,7 @@ public class NodeList<E> {
 	public boolean isLast(E element) {
 		if(element == null)
 			return false;
-		else if(linkedList.peekLast() == element)
+		else if(linkedList.peekLast().equals(element))
 			return true;
 		return false;
 	}
@@ -86,7 +86,7 @@ public class NodeList<E> {
 	}
 
 
-	// fix me!
+	// fixed me!
 	E next(E element)
 			throws NoSuchElementException {
 		if(linkedList.peekLast().equals(element))
@@ -102,16 +102,26 @@ public class NodeList<E> {
 		// return null;
 	}
 
-	// fix me!
+	// fixed me!
 	public void swapElements(E element1, E element2)
 			throws NoSuchElementException {
+		int e1Index = linkedList.indexOf(element1);
+		int e2Index = linkedList.indexOf(element2);
+		if(e1Index != -1 && e2Index != -1) {
+			linkedList.set(e2Index, element1);
+			linkedList.set(e1Index, element2);
+		}
 		throw new NoSuchElementException();
 	}
 
 
-	// fix me!
+	// fixed me!
 	public void set(E currElement, E repElement)
 			throws NoSuchElementException {
+		if(currElement != null) {
+			int index = linkedList.indexOf(currElement);
+			linkedList.set(index, repElement);
+		}
 		throw new NoSuchElementException();
 	}
 
@@ -128,9 +138,18 @@ public class NodeList<E> {
 		return;
 	}
 
-	// fix me!
+	// fixed me!
 	public void addBefore(E currElement,E addElement)
 			throws NoSuchElementException {
+		if(linkedList.indexOf(currElement) != -1) {
+			ListIterator<E> bobby = linkedList.listIterator();
+			while(bobby.hasNext()) {
+				if(bobby.next().equals(currElement)) {
+					bobby.previous();
+					bobby.add(addElement);
+				}
+			}
+		}
 		throw new NoSuchElementException();
 	}
 
