@@ -144,14 +144,8 @@ public class NodeList<E> {
 	public void addBefore(E currElement,E addElement)
 			throws NoSuchElementException {
 		if(linkedList.indexOf(currElement) != -1) {
-			ListIterator<E> bobby = linkedList.listIterator();
-			while(bobby.hasNext()) {
-				if(bobby.next().equals(currElement)) {
-					bobby.previous();
-					bobby.add(addElement);
-					return;
-				}
-			}
+			linkedList.add(linkedList.indexOf(currElement), addElement);
+			return;
 		}
 		throw new NoSuchElementException();
 	}
@@ -160,13 +154,8 @@ public class NodeList<E> {
 	public void addAfter(E currElement,E addElement) 
 			throws NoSuchElementException {
 		if(linkedList.indexOf(currElement) != -1) {
-			ListIterator<E> bobby = linkedList.listIterator();
-			while(bobby.hasNext()) {
-				if(bobby.next().equals(currElement)) {
-					bobby.add(addElement);
-					return;
-				}
-			}
+			linkedList.add(linkedList.indexOf(currElement)+1, addElement);
+			return;
 		}
 		throw new NoSuchElementException();
 	}
