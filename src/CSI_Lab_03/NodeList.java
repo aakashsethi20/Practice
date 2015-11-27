@@ -89,6 +89,15 @@ public class NodeList<E> {
 	// fix me!
 	E next(E element)
 			throws NoSuchElementException {
+		if(linkedList.peekLast().equals(element))
+			return null;
+		
+		ListIterator<E> bobby = linkedList.listIterator();
+		while(bobby.hasNext()) {
+			if(bobby.next().equals(element)) {
+				return bobby.next();
+			}
+		}
 		throw new NoSuchElementException();
 		// return null;
 	}
