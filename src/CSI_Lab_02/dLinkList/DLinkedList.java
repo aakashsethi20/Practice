@@ -20,14 +20,14 @@ class DLinkedList {
 	// Inserts a node into the list after pAfter
 	void InsertNode(ListNode nNode, ListNode pAfter) {
 
-		if(pAfter == null) {
-			firstNode = nNode;
-			return;
-		}
-		
 		nNode.previous = pAfter;
-		nNode.next = pAfter.next;
-		nNode.next.previous = nNode;
+
+		if(pAfter.next == null)
+			lastNode = nNode;
+		else {
+			pAfter.next.previous = nNode;
+			nNode.next = pAfter.next;
+		}
 		pAfter.next = nNode;
 	}
 
