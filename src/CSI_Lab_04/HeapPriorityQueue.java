@@ -1,6 +1,7 @@
 /**
  * Array Heap implementation of a priority queue
  * @author Lachlan Plant
+ * @author (Implemented by) Aakash
  */
 public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<K ,V> {
     
@@ -11,12 +12,17 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * Default constructor
     */
     public HeapPriorityQueue(){
+    	this(0);
     }
     
     /**
     * HeapPriorityQueue constructor with max storage of size elements
     */
     public HeapPriorityQueue(int size){
+    	
+    	storage = new Entry[size];
+    	tail = -1;
+    	
     }
     
     /****************************************************
@@ -31,7 +37,7 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * @return number of items
     */
     public int size(){
-        return -1;
+        return tail+1;
     }
 
     /**
@@ -40,7 +46,9 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * @return true if the priority queue is empty, false otherwise
     */
     public boolean isEmpty(){
-        return true;
+        if(tail < 0)
+        	return true;
+        return false;
     }
     
     /**
@@ -52,6 +60,19 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * @throws IllegalArgumentException if the heap is full
     */
     public Entry<K,V> insert(K key, V value) throws IllegalArgumentException{
+    	if(!(key instanceof Comparable)) {
+    		throw new IllegalArgumentException();
+    	}
+    	tail += 1;
+    	try {
+    		storage[tail].key = key;
+        	storage[tail].value = value;
+    	}
+    	catch(ArrayIndexOutOfBoundsException e) {
+    		System.out.println("The Priority Queue is full");
+    		return new Entry<K, V>(key, value);
+    	}
+    	
         return null;
     }
     
