@@ -131,7 +131,24 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * O(log(n))
     */
     private void downHeap(int location){
-         return;            
+    	int leftIn = location*2;
+    	int rightIn = location*2 + 1;
+    	if(leftIn > tail)
+    		return;
+    	if(leftIn == tail) {
+    		if(compare(location, leftIn) > 0)
+    			swap(location, leftIn);
+    		return;
+    	}
+    	int smallChild;
+    	if(compare(leftIn, rightIn) < 0)
+    		smallChild = leftIn;
+    	else
+    		smallChild = rightIn;
+    	if(compare(location, smallChild) > 0) {
+    		swap(location, smallChild);
+    		downHeap(smallChild);
+    	}
     }
     
     /**
