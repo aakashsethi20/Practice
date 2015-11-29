@@ -154,8 +154,13 @@ public class NodeList<E> {
 	public void addAfter(E currElement,E addElement) 
 			throws NoSuchElementException {
 		if(linkedList.indexOf(currElement) != -1) {
-			linkedList.add(linkedList.indexOf(currElement)+1, addElement);
-			return;
+			ListIterator<E> bobby = linkedList.listIterator();
+			while(bobby.hasNext()) {
+				if(bobby.next().equals(currElement)) {
+					bobby.add(addElement);
+					return;
+				}
+			}
 		}
 		throw new NoSuchElementException();
 	}
