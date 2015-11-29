@@ -64,7 +64,7 @@ public class Sentence {
     stringNodeList.addBefore( center, new String("not") );
     // Print out the sentence
     Sentence.print( stringNodeList );
-    stringNodeList.addAfter( center, new String("not") );
+    stringNodeList.addAfter( center, new String("not2") );
     // Print out the sentence
     Sentence.print( stringNodeList );
     
