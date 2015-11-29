@@ -116,7 +116,14 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * O(log(n))
     */
     private void upHeap(int location){
-         return;          
+    	
+    	if(location == 0)
+    		return;
+    	if(compare(location, parent(location)) < 0) {
+    		swap(location, parent(location));
+    		upHeap(parent(location));
+    	}
+    	          
     }
     
     /**
@@ -145,6 +152,13 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     	Entry<K,V> temp = storage[location2];
     	storage[location2] = storage[location1];
     	storage[location1] = temp;  
+    }
+    
+    /**
+     * Method to compare the keys of two entries
+     */
+    private int compare(int location1, int location2) {
+    	return storage[location1].getKey().compareTo(storage[location2].getKey());
     }
     
 }
