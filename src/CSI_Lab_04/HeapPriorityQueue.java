@@ -72,8 +72,26 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     		System.out.println("The Priority Queue is full");
     		return new Entry<K, V>(key, value);
     	}
+    	int index = tail;
     	
-        return null;
+    	for(int count=0; count < tail/2; count ++) {
+    		if(storage[index].getKey().compareTo(storage[index/2].getKey()) < 0) {
+        		K tempk;
+        		tempk = (K) storage[index].getKey();
+        		storage[index].key = storage[index/2].getKey();
+        		storage[index/2].key = tempk;
+        		
+        		V tempv;
+        		tempv = (V) storage[index].getValue();
+        		storage[index].value = storage[index/2].getValue();
+        		storage[index/2].value = tempk;
+        		index = index/2;        		
+        	}
+    		else {
+    			break;
+    		}
+    	}    	
+		return new Entry<K,V>(key, value);
     }
     
     /**
@@ -82,7 +100,10 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * @return entry having a minimal key (or null if empty)
     */
     public Entry<K,V> min(){
-        return null;
+    	if(storage[0] == null) {
+        	return storage[0];
+        }
+    	return null;
     } 
     
     /**
