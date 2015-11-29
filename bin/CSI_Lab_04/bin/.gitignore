@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 /.classpath
-/.project
 /Entry.class
 /HeapPriorityQueue.class
 /HeapPriorityQueueTest.class
 /PriorityQueue.class
-=======
-/.project
->>>>>>> PosList_debug
