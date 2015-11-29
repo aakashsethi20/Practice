@@ -60,38 +60,12 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * @throws IllegalArgumentException if the heap is full
     */
     public Entry<K,V> insert(K key, V value) throws IllegalArgumentException{
-    	if(!(key instanceof Comparable)) {
+    	if(tail == storage.length-1)
     		throw new IllegalArgumentException();
-    	}
     	tail += 1;
-    	try {
-    		storage[tail].key = key;
-        	storage[tail].value = value;
-    	}
-    	catch(ArrayIndexOutOfBoundsException e) {
-    		System.out.println("The Priority Queue is full");
-    		return new Entry<K, V>(key, value);
-    	}
-    	int index = tail;
-    	
-    	for(int count=0; count < tail/2; count ++) {
-    		if(storage[index].getKey().compareTo(storage[index/2].getKey()) < 0) {
-        		K tempk;
-        		tempk = (K) storage[index].getKey();
-        		storage[index].key = storage[index/2].getKey();
-        		storage[index/2].key = tempk;
-        		
-        		V tempv;
-        		tempv = (V) storage[index].getValue();
-        		storage[index].value = storage[index/2].getValue();
-        		storage[index/2].value = tempk;
-        		index = index/2;        		
-        	}
-    		else {
-    			break;
-    		}
-    	}    	
-		return new Entry<K,V>(key, value);
+    	storage[tail] = new Entry<K,V>(key, value);
+    	upHeap(tail);
+    	return new Entry<K,V>(key, value);
     }
     
     /**
@@ -100,10 +74,10 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * @return entry having a minimal key (or null if empty)
     */
     public Entry<K,V> min(){
-    	if(storage[0] == null) {
-        	return storage[0];
+    	if(isEmpty()) {
+        	return null;
         }
-    	return null;
+    	return storage[0];
     } 
     
     /**
@@ -112,7 +86,22 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * @return the removed entry (or null if empty)
     */ 
     public Entry<K,V> removeMin(){
-        return null;
+    	
+    	if(isEmpty())
+    		return null;
+    	Entry<K,V> temp = storage[0];
+    	if(tail != 0) {
+    		storage[0] = storage[tail];
+    		storage[tail] = null;
+    		tail--;
+    		downHeap(0);
+    		return temp;
+    	}
+    	else {
+    		tail = -1;
+    		storage[0] = null;
+    		return temp;
+    	}
     }  
     
     
@@ -144,7 +133,7 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * O(1)
     */
     private int parent(int location){
-        return -1;
+        return (location - 1)/2;
     }
     
    
@@ -153,7 +142,9 @@ public class HeapPriorityQueue<K extends Comparable,V> implements PriorityQueue<
     * O(1)
     */
     private void swap(int location1, int location2){
-        return;  
+    	Entry<K,V> temp = storage[location2];
+    	storage[location2] = storage[location1];
+    	storage[location1] = temp;  
     }
     
 }
